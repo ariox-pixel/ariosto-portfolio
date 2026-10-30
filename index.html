@@ -35,10 +35,38 @@
     @media(max-width:760px){.hero:after{inset:0 -24px 0 0;background-position:58% center;opacity:.17}.jarvis-showcase{grid-template-columns:1fr;padding:15px}.roadmap-grid{grid-template-columns:1fr 1fr}.feedback-grid{grid-template-columns:1fr}}
     @media(max-width:520px){.roadmap-grid{grid-template-columns:1fr}.feedback-panel{padding:18px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+    /* Signature motion system — cinematic, restrained and accessible */
+    #ambient-canvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.48}
+    body>*:not(#ambient-canvas){position:relative;z-index:1}
+    .scroll-progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,#8c6b39,#f1d9a6,#8c6b39);z-index:60;box-shadow:0 0 12px rgba(230,210,168,.65)}
+    .hero-copy{animation:heroRise 1.05s cubic-bezier(.2,.7,.2,1) both}
+    .hero-art{animation:heroReveal 1.3s .12s cubic-bezier(.2,.7,.2,1) both}
+    .hero h1{background:linear-gradient(110deg,#f5f0e7 15%,#d8bd88 42%,#fff4d8 55%,#b28b4c 75%);background-size:220% auto;background-clip:text;-webkit-background-clip:text;color:transparent;animation:shineText 9s linear infinite}
+    .hero h1 span{background:linear-gradient(100deg,#9d7b46,#f1d9a6,#b18b50);background-clip:text;-webkit-background-clip:text;color:transparent}
+    .monogram{animation:floatEmblem 7s ease-in-out infinite}
+    .orbit{animation:rotate 38s linear infinite}
+    .project,.roadmap-card,.skill,.feedback-note{transition:transform .45s cubic-bezier(.2,.7,.2,1),border-color .35s,background .35s,box-shadow .45s}
+    .project:hover,.roadmap-card:hover,.skill:hover,.feedback-note:hover{transform:translateY(-7px);border-color:rgba(230,210,168,.48);box-shadow:0 22px 55px rgba(0,0,0,.25)}
+    .btn-primary{box-shadow:0 8px 28px rgba(201,169,110,.12);position:relative;overflow:hidden}
+    .btn-primary:after{content:"";position:absolute;inset:-80% auto -80% -35%;width:22%;transform:rotate(22deg);background:rgba(255,255,255,.32);filter:blur(8px);transition:left .7s}
+    .btn-primary:hover:after{left:125%}
+    .hero-art:after{content:"DISCOVER · BUILD · REPEAT";position:absolute;bottom:0;left:50%;transform:translateX(-50%);font-size:.58rem;letter-spacing:.34em;color:rgba(230,210,168,.5);white-space:nowrap}
+    .ticker-track{animation-duration:42s}
+    .whatsapp-float{animation:waPulse 3.5s ease-in-out infinite}
+    @keyframes heroRise{from{opacity:0;transform:translateY(34px);filter:blur(5px)}to{opacity:1;transform:none;filter:blur(0)}}
+    @keyframes heroReveal{from{opacity:0;transform:translateX(35px) scale(.96);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+    @keyframes floatEmblem{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-12px) rotate(1deg)}}
+    @keyframes shineText{to{background-position:220% center}}
+    @keyframes waPulse{0%,100%{box-shadow:0 10px 35px rgba(0,0,0,.4),0 0 0 0 rgba(31,157,97,.2)}50%{box-shadow:0 10px 35px rgba(0,0,0,.4),0 0 0 9px rgba(31,157,97,0)}}
+    .reveal{transform:translateY(34px) scale(.985);filter:blur(3px)}.reveal.visible{filter:blur(0);transition:opacity .85s ease,transform .85s cubic-bezier(.2,.7,.2,1),filter .85s ease}
+    @media(hover:hover) and (pointer:fine){body{cursor:default}.project:hover,.roadmap-card:hover{background-color:rgba(255,255,255,.055)}}
+    @media(prefers-reduced-motion:reduce){#ambient-canvas{display:none}.hero-copy,.hero-art,.monogram,.hero h1,.whatsapp-float{animation:none!important}.reveal{filter:none;transform:none}}
     .contact-number{margin-top:18px;color:#aaa49a;font-size:.82rem;letter-spacing:.06em}.contact-number a{color:var(--gold2);border-bottom:1px solid var(--line);padding-bottom:2px}.whatsapp-float{position:fixed;right:22px;bottom:22px;z-index:30;display:flex;align-items:center;gap:10px;padding:13px 17px;border-radius:999px;background:#1f9d61;color:white;font-size:.75rem;font-weight:700;letter-spacing:.04em;box-shadow:0 10px 35px rgba(0,0,0,.4);transition:transform .2s}.whatsapp-float:hover{transform:translateY(-3px)}.whatsapp-float span{font-size:1.1rem}@media(max-width:600px){.whatsapp-float{right:14px;bottom:14px;padding:12px 14px}.whatsapp-float .wa-label{display:none}}
   </style>
 </head>
 <body>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <canvas id="ambient-canvas" aria-hidden="true"></canvas>
   <header class="topbar">
     <div class="wrap nav">
       <a class="brand" href="#home" aria-label="Torna all'inizio"><span class="brand-mark">A</span><span>ARIOSTO</span></a>
@@ -167,6 +195,22 @@
     document.getElementById('year').textContent=new Date().getFullYear();
     const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}}),{threshold:.12});
     document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+    // Progressione di lettura elegante
+    const progress=document.getElementById('scrollProgress');
+    const updateProgress=()=>{const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max>0?(scrollY/max)*100:0)+'%';};
+    addEventListener('scroll',updateProgress,{passive:true});updateProgress();
+    // Particelle ambientali: leggere, decorative e disattivate con reduced motion
+    const canvas=document.getElementById('ambient-canvas'),ctx=canvas.getContext('2d');
+    const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(ctx&&!reduceMotion){let w=0,h=0,dpr=1,particles=[];const count=innerWidth<700?24:48;
+      function resize(){dpr=Math.min(devicePixelRatio||1,1.5);w=innerWidth;h=innerHeight;canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
+      function seed(){particles=Array.from({length:count},()=>({x:Math.random()*w,y:Math.random()*h,r:.5+Math.random()*1.4,vx:(Math.random()-.5)*.18,vy:-.08-Math.random()*.16,a:.12+Math.random()*.3}));}
+      function draw(){ctx.clearRect(0,0,w,h);for(const p of particles){p.x+=p.vx;p.y+=p.vy;if(p.y<-8){p.y=h+8;p.x=Math.random()*w}if(p.x<-8)p.x=w+8;if(p.x>w+8)p.x=-8;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(220,190,135,${p.a})`;ctx.fill();}requestAnimationFrame(draw);}
+      resize();seed();draw();addEventListener('resize',()=>{resize();seed();},{passive:true});
+    }
+    // Micro-interazione: lieve inclinazione dell'emblema solo con mouse
+    const emblem=document.querySelector('.monogram');
+    if(emblem&&matchMedia('(hover:hover) and (pointer:fine)').matches){const art=document.querySelector('.hero-art');art.addEventListener('pointermove',e=>{const r=art.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;emblem.style.transform=`translate(${x*9}px,${y*9}px) rotate(${x*3}deg)`;});art.addEventListener('pointerleave',()=>{emblem.style.transform='';});}
   </script>
 </body>
 </html>
