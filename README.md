@@ -1,17 +1,16 @@
-# Ariosto — Personal Portfolio
+# ARIOSTO — Personal Portfolio
 
-Sito personale statico, pronto per GitHub Pages.
+Sito personale responsive in HTML, CSS e JavaScript.
+
+## Contenuto
+- Presentazione personale e profilo multidisciplinare
+- Progetti digitali e JARVIS Enterprise con immagine della dashboard
+- Sezione ricerca e sviluppo / invenzioni in corso
+- Area feedback per aziende, clienti e collaboratori (senza recensioni inventate)
+- Competenze, metodo di lavoro, passioni e contatti
 
 ## Pubblicazione
-1. Crea un repository GitHub (ad esempio `ariosto-portfolio`).
-2. Carica `index.html` e la cartella `assets/` nella root del repository.
-3. Apri **Settings → Pages**.
-4. Seleziona **Deploy from a branch**, branch `main`, cartella `/ (root)` e salva.
-5. Attendi il completamento del deploy.
+Carica il contenuto di questa cartella nel repository scelto per il sito e abilita il servizio di hosting statico (ad esempio GitHub Pages). Il file iniziale deve rimanere `index.html` e la cartella `assets` deve restare accanto ad esso.
 
-## Personalizzazioni consigliate
-- Inserire una fotografia professionale e i contatti pubblici desiderati.
-- Aggiornare lo stato dei progetti quando cambia.
-- Pubblicare solo recensioni autentiche, verificate e autorizzate dai rispettivi autori.
-
-Il sito non contiene backend né moduli che raccolgono dati personali. La sezione feedback è informativa e rimanda al profilo GitHub.
+## Personalizzazione consigliata
+Prima della pubblicazione definitiva, aggiungi una fotografia professionale e, se desideri, il cognome. Inserisci eventuali testimonianze solo dopo averne verificato l'autenticità e ottenuto il consenso alla pubblicazione.
