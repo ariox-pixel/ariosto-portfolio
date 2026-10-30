@@ -35,6 +35,7 @@
     @media(max-width:760px){.hero:after{inset:0 -24px 0 0;background-position:58% center;opacity:.17}.jarvis-showcase{grid-template-columns:1fr;padding:15px}.roadmap-grid{grid-template-columns:1fr 1fr}.feedback-grid{grid-template-columns:1fr}}
     @media(max-width:520px){.roadmap-grid{grid-template-columns:1fr}.feedback-panel{padding:18px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+    .contact-number{margin-top:18px;color:#aaa49a;font-size:.82rem;letter-spacing:.06em}.contact-number a{color:var(--gold2);border-bottom:1px solid var(--line);padding-bottom:2px}.whatsapp-float{position:fixed;right:22px;bottom:22px;z-index:30;display:flex;align-items:center;gap:10px;padding:13px 17px;border-radius:999px;background:#1f9d61;color:white;font-size:.75rem;font-weight:700;letter-spacing:.04em;box-shadow:0 10px 35px rgba(0,0,0,.4);transition:transform .2s}.whatsapp-float:hover{transform:translateY(-3px)}.whatsapp-float span{font-size:1.1rem}@media(max-width:600px){.whatsapp-float{right:14px;bottom:14px;padding:12px 14px}.whatsapp-float .wa-label{display:none}}
   </style>
 </head>
 <body>
@@ -44,7 +45,7 @@
       <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">MENU ☰</button>
       <nav class="nav-links" id="navLinks" aria-label="Navigazione principale">
         <a href="#profilo">Profilo</a><a href="#progetti">Progetti</a><a href="#roadmap">Invenzioni</a><a href="#feedback">Feedback</a><a href="#competenze">Competenze</a>
-        <a class="nav-cta" href="#contatti">Connettiamoci ↗</a>
+        <a class="nav-cta" href="https://wa.me/393888629479?text=Ciao%20Ariosto%2C%20vorrei%20parlare%20di%20una%20collaborazione." target="_blank" rel="noopener">Contattami su WhatsApp ↗</a>
       </nav>
     </div>
   </header>
@@ -152,11 +153,12 @@
     </section>
 
     <section class="contact" id="contatti">
-      <div class="wrap"><div class="contact-box reveal"><div class="eyebrow" style="justify-content:center">Le buone idee iniziano da una conversazione</div><h2>Costruiamo qualcosa<br><em class="gold">che abbia valore.</em></h2><p>Progetti, collaborazioni, tecnologia e nuove opportunità. Sono sempre interessato a confrontarmi con persone concrete, curiose e orientate a realizzare.</p><a class="btn btn-primary" href="#progetti">Scopri cosa sto costruendo <span>↗</span></a></div></div>
+      <div class="wrap"><div class="contact-box reveal"><div class="eyebrow" style="justify-content:center">Le buone idee iniziano da una conversazione</div><h2>Costruiamo qualcosa<br><em class="gold">che abbia valore.</em></h2><p>Progetti, collaborazioni, tecnologia e nuove opportunità. Sono sempre interessato a confrontarmi con persone concrete, curiose e orientate a realizzare.</p><a class="btn btn-primary" href="https://wa.me/393888629479?text=Ciao%20Ariosto%2C%20ti%20contatto%20per%20una%20collaborazione%20o%20un%20nuovo%20progetto." target="_blank" rel="noopener">Proponi una collaborazione su WhatsApp <span>↗</span></a><div class="contact-number">WhatsApp: <a href="https://wa.me/393888629479" target="_blank" rel="noopener">+39 388 862 9479</a></div></div></div>
     </section>
   </main>
 
-  <footer><div class="wrap footer-inner"><div class="footer-brand">ARIOSTO</div><div>© <span id="year"></span> · Personal portfolio · Le idee prendono forma.</div><div class="footer-links"><a href="#progetti">Progetti</a><a href="#home">Torna su ↑</a></div></div></footer>
+  <a class="whatsapp-float" href="https://wa.me/393888629479?text=Ciao%20Ariosto%2C%20vorrei%20parlare%20di%20una%20collaborazione." target="_blank" rel="noopener" aria-label="Contatta Ariosto su WhatsApp"><span>✆</span><span class="wa-label">Scrivimi su WhatsApp</span></a>
+  <footer><div class="wrap footer-inner"><div class="footer-brand">ARIOSTO</div><div>© <span id="year"></span> · Personal portfolio · Le idee prendono forma.</div><div class="footer-links"><a href="https://wa.me/393888629479" target="_blank" rel="noopener">WhatsApp</a><a href="#home">Torna su ↑</a></div></div></footer>
   <script>
     const menuBtn=document.getElementById('menuBtn');
     const navLinks=document.getElementById('navLinks');
